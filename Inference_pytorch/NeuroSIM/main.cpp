@@ -107,8 +107,18 @@ int main(int argc, char * argv[]) {
 	} else {
 		param->numColPerSynapse = ceil((double)param->synapseBit/(double)param->cellBit); 
 	}
-	
+
+    /**
+     * Define max PE size based on NOVEL MAPPING \n
+     * Define max Tile size based on CONVENTIONAL MAPPING \n
+     * Define number of PEs based on NOVEL MAPPING \n
+    **/
 	double maxPESizeNM, maxTileSizeCM, numPENM;
+
+    /**
+     * markNM: shows which layers of net can use Novel Mapping. \n
+     * pipelineSpeedUp: shows each layer speed up ratio. note that the speed up ratio is caused by weight duplication
+     **/
 	vector<int> markNM;
 	vector<int> pipelineSpeedUp;
 	markNM = ChipDesignInitialize(inputParameter, tech, cell, false, netStructure, &maxPESizeNM, &maxTileSizeCM, &numPENM);
